@@ -36,7 +36,7 @@ const Timeslot = mongoose.model("timeslots", timeslotSchema)
 app.get("/", async (req, res) => {    
     // get all the timeslots from the database and display in UI.
     const slots = await Timeslot.find()    
-    return res.render("home.ejs", {timeslots:slots, somethingtohere:req.session.somethingtohere}) 
+    return res.render("home.ejs", {timeslots:slots, savedtime:req.session.savedtime}) 
 
 })
 app.post("/book/:id", async (req,res)=>{        
@@ -58,7 +58,7 @@ app.get("/manage", async (req,res)=>{
     return res.render("manageBookings.ejs", {timeslots:slots})
 })
 
-
+// I don't have enough time to code everything :((((
 
 // 3. Login/Logout endpoints
 app.get("/login", (req,res)=>{
