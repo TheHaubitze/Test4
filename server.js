@@ -41,6 +41,8 @@ app.get("/", async (req, res) => {
 })
 app.post("/book/:id", async (req,res)=>{        
     await Timeslot.findByIdAndUpdate(req.params.id, {customer: req.body.txtCustomer})
+    const updated = await Timeslot.findById(req.params.id)
+    console.log("Booked, timeslot is:", updated)
     return res.send(`Success, your reservation number is ${req.params.id}. <a href="/">Home</a>`)
 })
 app.get("/remind/:id", async (req,res)=>{     
@@ -51,10 +53,12 @@ app.get("/remind/:id", async (req,res)=>{
 
 // 2. Manage Bookings endpoints
 app.get("/manage", async (req,res)=>{
-    if (req.session.managerinfo === undefiend) {
+    if (req.session.managerinfo === undefined) {
         return res.send("must be logged in to book!")
     }
+    
     const slots = await Timeslot.find()
+    console.log(slots)
     return res.render("manageBookings.ejs", {timeslots:slots})
 })
 

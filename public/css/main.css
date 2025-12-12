@@ -7,6 +7,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-500: oklch(63.7% 0.237 25.331);
     --spacing: 0.25rem;
     --container-xs: 20rem;
     --container-sm: 24rem;
@@ -932,6 +933,9 @@
   }
   .text-neutral-content {
     color: var(--color-neutral-content);
+  }
+  .text-red-500 {
+    color: var(--color-red-500);
   }
   .uppercase {
     text-transform: uppercase;

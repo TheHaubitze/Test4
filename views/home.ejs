@@ -48,14 +48,18 @@
                <p><%= timeslots[i].time %></p>
                
                 <!-- reminder link  -->
-                <a href="/remind/99999999" class="btn btn-neutral btn-outline">Set Reminder</a>   
+                 <% if (timeslots[i].customer === "") { %>
+
+                <a href="/remind/<%= timeslots[i]._id %>" class="btn btn-neutral btn-outline">Set Reminder</a>   
 
                 <!-- booking form -->
-                <form action="/book/99999999" method="POST" class="join">
+                <form action="/book/<%= timeslots[i]._id %>" method="POST" class="join">
                     <input type="text" name="txtCustomer" class="input" placeholder="What's your name?"/>
                     <button class="btn btn-primary join-item">Book</button>
                 </form>                       
-                
+                <% } else { %>
+                    <p class="text-red-500">booked by <%= timeslots[i].customer %></p>
+                    <% } %>  
             </div>
         <% } %>   
     </div>    
