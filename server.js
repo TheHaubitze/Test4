@@ -40,12 +40,12 @@ app.get("/", async (req, res) => {
 
 })
 app.post("/book/:id", async (req,res)=>{        
-    await Timeslot.findByIdAndUpdate(req.params.id, {customer: req.body.somethingCustomer})
+    await Timeslot.findByIdAndUpdate(req.params.id, {customer: req.body.txtCustomer})
     return res.send(`Success, your reservation number is ${req.params.id}. <a href="/">Home</a>`)
 })
 app.get("/remind/:id", async (req,res)=>{     
     const slot = await Timeslot.findById(req.params.id)
-    req.session.savetime = slot.time 
+    req.session.savedtime = slot.time 
     return res.send(`Reminder feature activated! <a href="/">Home</a>`)
 })
 
@@ -88,6 +88,7 @@ app.get("/cancel/:id", async (req,res)=>{
     await Timeslot.findByIdAndUpdate(req.params.id, {customer:""})  
     return res.send(`Reservation cancelled. <a href="/manage">Manage Bookings?</a>`)
 })
+
 
 // ===== DATABASE POPULATION =====
 const populateDatabase = async () => {       
